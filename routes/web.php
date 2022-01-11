@@ -1,5 +1,4 @@
 <?php
-
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 /*
@@ -12,10 +11,6 @@
 | and give it the Closure to call when that URI is requested.
 |
 */
-
-$router->get('/', function () use ($router) {
-    return ["Hello Hai..!!!"];
-});
 
 $router->get('/data', function () use ($router) {
     $results = app('db')->select("SELECT * FROM users");
