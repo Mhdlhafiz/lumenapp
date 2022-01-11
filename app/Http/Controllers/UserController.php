@@ -3,24 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     public function register(Request $request){
-        $this->validate($request, [
-            'email' => 'required|unique:users|email',
-            'password' => 'required|min:6'
-        ]);
-        $email = $request->input('email');
-        $password = Hash::make($request->input('password'));
+        $username = $request->username;
+        $nama = $request->nama;
+        $nohp = $request->nohp;
+        $password = Hash::make($request->password);
 
         $user = User::create([
-            'email' => $email,
-            'password' => $password
+            'username' => $username,
+            'password' => $password,
+            'nohp' => $nohp,
+            'nama' => $nama
         ]);
 
-        return response()->json(['message' => 'Pendaftaran pengguna berhasil dilaksanakan']);
+        return response()->json(['message' => 'Pendaftaran pengguna berhasil']);
     }
 }
