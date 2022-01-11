@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
+use stdClass;
+
 class AuthController extends Controller
 {
     public function login(Request $request)
@@ -23,9 +25,10 @@ class AuthController extends Controller
             'token' => $generateToken
         ]);
 
-        
+        $data = new stdClass;
+        $data->data = $user;
 
-        return response()->json($user);
+        return response()->json($data);
     }
 
     public function logout(){
